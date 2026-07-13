@@ -1,0 +1,480 @@
+seller_id,category,country,tier,group,gmv_90d,activated
+S100000,Fashion,IT,Standard,control,2424.63,True
+S100002,Sports,UK,Standard,treatment,1527.6976328222665,True
+S100003,Beauty,DE,Standard,treatment,2224.879295404573,True
+S100005,Beauty,UK,Plus,control,1349.96,True
+S100006,Sports,UK,Standard,control,146.54160500548804,False
+S100007,FMCG,FR,Standard,control,39.27104621942329,False
+S100011,Sports,ES,Standard,treatment,318.463642492456,True
+S100013,Sports,UK,Standard,treatment,3344.1408311074265,True
+S100018,Toys & Hobbies,DE,Enterprise,control,6998.01,True
+S100020,Home & Living,UK,Standard,control,191.51686136523233,False
+S100022,Fashion,UK,Standard,control,1568.77,True
+S100023,Beauty,IT,Standard,treatment,2681.053468410279,True
+S100024,Beauty,IT,Standard,treatment,752.1327050423392,True
+S100029,Fashion,FR,Standard,treatment,2800.623555508475,True
+S100030,Toys & Hobbies,UK,Enterprise,treatment,6068.954888605156,True
+S100031,Home & Living,DE,Standard,control,15.499693393173233,False
+S100039,Sports,UK,Standard,treatment,2219.1569589913474,True
+S100041,FMCG,DE,Plus,treatment,161.23430220331724,False
+S100042,FMCG,DE,Standard,treatment,1365.9451842024355,True
+S100044,FMCG,UK,Standard,control,1178.6399999999999,True
+S100045,Fashion,DE,Standard,treatment,125.94718943904982,False
+S100048,Home & Living,FR,Standard,control,3268.12,True
+S100052,Toys & Hobbies,ES,Standard,control,112.67779110713695,False
+S100053,Sports,UK,Standard,treatment,84.89037869298969,False
+S100054,Beauty,FR,Plus,treatment,1937.4038879370405,True
+S100055,FMCG,IT,Standard,treatment,718.9782868177888,True
+S100060,Electronics,DE,Enterprise,control,11288.14,True
+S100063,Beauty,UK,Plus,treatment,3892.0377745346577,True
+S100072,FMCG,UK,Plus,treatment,2447.8501430369574,True
+S100077,Sports,DE,Plus,control,4050.2699999999995,True
+S100079,Fashion,UK,Standard,control,2491.11,True
+S100080,Fashion,UK,Standard,treatment,16.43423621731988,False
+S100082,Fashion,DE,Standard,control,2362.86,True
+S100086,Sports,UK,Plus,control,93.4328302735689,False
+S100091,Electronics,IT,Standard,control,4356.8,True
+S100099,Home & Living,DE,Standard,control,1039.76,True
+S100100,Home & Living,DE,Standard,control,1795.0,True
+S100101,Sports,IT,Standard,treatment,2193.5257352098074,True
+S100103,Fashion,IT,Standard,treatment,573.6453120998074,True
+S100104,Electronics,UK,Standard,treatment,6065.027486362443,True
+S100105,Fashion,FR,Standard,treatment,42.24956667726278,False
+S100109,Electronics,DE,Standard,treatment,7347.047278048195,True
+S100115,Beauty,UK,Standard,control,1083.44,True
+S100116,FMCG,UK,Plus,treatment,3006.7624927868774,True
+S100117,Sports,ES,Plus,treatment,2822.203047853688,True
+S100131,FMCG,UK,Plus,treatment,1089.406198065062,True
+S100136,Electronics,UK,Standard,control,1194.6,True
+S100138,Electronics,UK,Standard,treatment,5856.83356074006,True
+S100142,Beauty,ES,Standard,control,422.44,True
+S100150,FMCG,UK,Standard,control,1321.3899999999999,True
+S100151,Fashion,FR,Standard,control,1021.24,True
+S100155,Electronics,UK,Standard,treatment,2742.16960933364,True
+S100157,Fashion,UK,Standard,control,216.68340996219777,False
+S100158,Home & Living,UK,Standard,control,2993.35,True
+S100159,Toys & Hobbies,IT,Plus,control,4963.58,True
+S100161,Home & Living,IT,Standard,treatment,810.0663331567143,True
+S100166,FMCG,UK,Standard,treatment,118.02806800535289,False
+S100167,FMCG,UK,Standard,control,19.012849781650445,False
+S100169,Fashion,UK,Standard,control,64.90106667687503,False
+S100173,Electronics,IT,Standard,treatment,4233.495433346111,True
+S100177,Electronics,FR,Standard,control,3.392386948998337,False
+S100178,Sports,FR,Plus,control,3195.23,True
+S100179,Toys & Hobbies,ES,Standard,control,126.41400739515251,False
+S100180,Toys & Hobbies,FR,Standard,treatment,1715.641943632349,True
+S100181,Beauty,UK,Standard,control,137.26417166735422,False
+S100184,Home & Living,UK,Plus,control,12437.93,True
+S100185,Toys & Hobbies,UK,Plus,treatment,2809.3250847135346,True
+S100188,Beauty,UK,Plus,treatment,4591.1946148703655,True
+S100190,FMCG,ES,Standard,control,58.59904082496044,False
+S100193,Beauty,DE,Standard,control,4163.12,True
+S100197,FMCG,UK,Plus,treatment,2181.5345719044208,True
+S100200,Toys & Hobbies,ES,Plus,control,3056.0299999999997,True
+S100201,FMCG,DE,Plus,treatment,0.2659623002659494,False
+S100207,Beauty,UK,Standard,treatment,1500.9999982370368,True
+S100210,Beauty,UK,Standard,treatment,1148.1126585219233,True
+S100213,Beauty,FR,Standard,treatment,2132.6984488777193,True
+S100214,Electronics,UK,Standard,control,4309.09,True
+S100215,FMCG,FR,Plus,treatment,2263.442049064595,True
+S100218,Sports,UK,Standard,treatment,901.5797355509683,True
+S100222,Electronics,DE,Standard,control,3381.2799999999997,True
+S100223,FMCG,DE,Standard,treatment,680.6090985956133,True
+S100225,Electronics,UK,Standard,treatment,5270.7077136438475,True
+S100232,Home & Living,UK,Plus,treatment,788.9337730611944,True
+S100234,Sports,IT,Standard,control,671.65,True
+S100235,Beauty,FR,Standard,control,2396.0499999999997,True
+S100237,Toys & Hobbies,UK,Standard,treatment,3352.904329255881,True
+S100240,Electronics,UK,Standard,control,5127.13,True
+S100241,FMCG,IT,Standard,control,1387.97,True
+S100245,Fashion,IT,Standard,treatment,1498.4386057713275,True
+S100251,Beauty,UK,Enterprise,control,407.897169155369,False
+S100255,Beauty,DE,Standard,treatment,1853.6333859954734,True
+S100256,Beauty,FR,Standard,treatment,14.747380896472382,False
+S100261,Home & Living,DE,Standard,treatment,140.9662469695722,False
+S100264,Toys & Hobbies,UK,Standard,treatment,1439.8601001781585,True
+S100274,Electronics,ES,Standard,control,169.60903588914383,False
+S100278,Toys & Hobbies,FR,Plus,treatment,4134.61614564417,True
+S100279,Fashion,UK,Enterprise,treatment,8067.446507873728,True
+S100290,Electronics,ES,Standard,treatment,21.705003921797477,False
+S100292,Beauty,ES,Enterprise,treatment,140.53825447398955,False
+S100294,Home & Living,DE,Standard,control,2770.24,True
+S100295,Fashion,UK,Standard,control,407.08,True
+S100296,FMCG,UK,Standard,control,623.74,True
+S100297,Electronics,DE,Standard,treatment,5463.156573115854,True
+S100298,Sports,UK,Plus,control,4720.7,True
+S100300,Toys & Hobbies,IT,Standard,control,1686.65,True
+S100304,Fashion,FR,Standard,treatment,2827.7103413223767,True
+S100317,Home & Living,FR,Standard,control,4397.35,True
+S100319,Electronics,UK,Standard,control,81.01731210690481,False
+S100320,FMCG,UK,Standard,treatment,772.3293961439944,True
+S100324,Fashion,UK,Plus,control,4612.6900000000005,True
+S100326,Beauty,DE,Plus,treatment,3896.1045554079947,True
+S100330,Sports,DE,Plus,treatment,7626.153274019256,True
+S100332,Electronics,UK,Standard,control,224.2932598150978,False
+S100333,Beauty,UK,Standard,treatment,3855.8421279502704,True
+S100337,FMCG,UK,Plus,control,2043.4,True
+S100339,Electronics,UK,Standard,treatment,1871.2973768967565,True
+S100341,Beauty,UK,Standard,control,89.97,True
+S100342,FMCG,IT,Enterprise,control,5196.53,True
+S100344,Home & Living,ES,Standard,treatment,2836.528709698474,True
+S100345,Home & Living,FR,Standard,treatment,1048.9666392009099,True
+S100346,Electronics,FR,Enterprise,treatment,3460.103268659627,True
+S100356,FMCG,UK,Plus,treatment,106.28980971751959,False
+S100357,Sports,UK,Plus,treatment,5746.518138955345,True
+S100360,Beauty,IT,Enterprise,control,219.20480835417578,False
+S100364,FMCG,FR,Standard,control,817.57,True
+S100366,Sports,UK,Plus,control,305.1657626063962,False
+S100367,FMCG,UK,Standard,treatment,190.65605586604912,False
+S100369,Electronics,FR,Standard,control,2028.74,True
+S100370,Fashion,IT,Standard,treatment,1297.1910318454452,True
+S100376,Home & Living,ES,Plus,control,7335.8099999999995,True
+S100379,Fashion,DE,Standard,control,2454.06,True
+S100381,Electronics,UK,Plus,treatment,5309.554544134062,True
+S100382,Beauty,DE,Plus,treatment,5083.582901390725,True
+S100385,Electronics,UK,Plus,treatment,13756.592990203513,True
+S100386,Beauty,FR,Standard,control,2144.7200000000003,True
+S100387,Home & Living,ES,Plus,treatment,1650.550186499716,True
+S100389,FMCG,UK,Plus,treatment,3590.259773137915,True
+S100393,Home & Living,FR,Standard,control,3160.0299999999997,True
+S100396,Fashion,DE,Standard,treatment,3517.0023554642194,True
+S100401,Home & Living,IT,Plus,control,2660.26,True
+S100402,FMCG,IT,Enterprise,control,4923.83,True
+S100404,Home & Living,IT,Standard,control,482.0,True
+S100405,Home & Living,DE,Standard,treatment,162.70264959955546,False
+S100407,Fashion,UK,Standard,treatment,161.11271303177531,False
+S100409,FMCG,UK,Enterprise,control,487.46,True
+S100410,Beauty,UK,Plus,treatment,3114.846948116517,True
+S100413,Beauty,DE,Standard,treatment,1408.3988446578383,True
+S100417,Fashion,UK,Standard,control,277.60746797007687,False
+S100419,Home & Living,UK,Standard,control,1821.45,True
+S100420,Toys & Hobbies,UK,Standard,control,3557.3,True
+S100425,FMCG,ES,Standard,control,1914.65,True
+S100427,Fashion,UK,Standard,control,2189.54,True
+S100429,Fashion,DE,Standard,treatment,1283.4800827710988,True
+S100430,Fashion,DE,Standard,treatment,1130.0439734538165,True
+S100431,Sports,UK,Standard,treatment,2150.6610119897387,True
+S100432,Fashion,DE,Standard,control,663.04,True
+S100433,FMCG,UK,Standard,control,1156.35,True
+S100438,Electronics,UK,Standard,control,3310.71,True
+S100440,FMCG,ES,Standard,control,59.43030135082949,False
+S100442,FMCG,IT,Standard,treatment,1560.998173786411,True
+S100445,Home & Living,DE,Enterprise,control,6651.7,True
+S100446,Beauty,UK,Plus,control,2381.57,True
+S100451,Toys & Hobbies,DE,Plus,treatment,444.9197224245437,False
+S100452,Fashion,UK,Standard,treatment,402.9946215293216,False
+S100456,Beauty,UK,Plus,control,4.893062822077548,False
+S100458,Beauty,DE,Standard,control,1851.0700000000002,True
+S100462,Sports,UK,Standard,control,2063.38,True
+S100465,Electronics,UK,Standard,treatment,4541.806446387847,True
+S100467,FMCG,FR,Standard,control,340.95,True
+S100490,Beauty,UK,Standard,treatment,2452.098348955196,True
+S100494,Beauty,DE,Standard,control,52.10722294023522,False
+S100500,Fashion,IT,Enterprise,control,1134.6606304383292,False
+S100501,FMCG,UK,Standard,control,1840.8300000000002,True
+S100502,Electronics,UK,Standard,treatment,7967.451079697447,True
+S100505,Fashion,UK,Standard,control,128.1202426645669,False
+S100507,FMCG,UK,Standard,treatment,1099.358578308685,True
+S100511,FMCG,IT,Standard,treatment,2464.7872337402414,True
+S100517,Home & Living,UK,Standard,treatment,1741.3978298733743,True
+S100519,Sports,UK,Standard,treatment,195.82575119311895,False
+S100520,Fashion,UK,Standard,control,5.460641720665893,False
+S100526,Beauty,DE,Plus,control,1456.69,True
+S100527,Home & Living,ES,Standard,control,844.95,True
+S100528,FMCG,DE,Standard,control,98.66819920829832,False
+S100530,Home & Living,IT,Standard,treatment,97.64571382564169,False
+S100531,Home & Living,UK,Plus,treatment,9231.44549926873,True
+S100539,FMCG,DE,Standard,treatment,1819.2167112925958,True
+S100540,Beauty,UK,Standard,control,878.06,True
+S100542,Beauty,UK,Plus,control,3354.4399999999996,True
+S100543,FMCG,UK,Standard,treatment,359.7776910090076,True
+S100548,FMCG,FR,Plus,treatment,2312.759170400815,True
+S100553,Sports,UK,Standard,control,668.13,True
+S100562,Fashion,DE,Plus,treatment,5182.675565148609,True
+S100565,FMCG,UK,Standard,treatment,584.6714872137208,True
+S100566,Home & Living,FR,Standard,control,2592.9700000000003,True
+S100571,Sports,UK,Standard,control,113.51784015008032,False
+S100573,Beauty,UK,Standard,treatment,17.062207533930604,False
+S100574,FMCG,DE,Standard,treatment,1275.9551783965715,True
+S100576,Fashion,UK,Standard,control,2094.95,True
+S100578,Home & Living,DE,Standard,treatment,2104.1047843432584,True
+S100584,Home & Living,UK,Enterprise,treatment,1045.2784463420733,False
+S100590,FMCG,UK,Standard,treatment,1019.7795881882203,True
+S100596,Beauty,UK,Standard,control,3334.76,True
+S100598,Electronics,FR,Plus,treatment,3586.1405075986004,True
+S100601,Fashion,ES,Standard,treatment,2320.828615707771,True
+S100602,Sports,DE,Standard,treatment,1416.177351429351,True
+S100603,Home & Living,IT,Standard,treatment,365.2760996423606,False
+S100604,FMCG,ES,Plus,control,351.7,True
+S100605,Toys & Hobbies,ES,Plus,control,5251.37,True
+S100606,Fashion,DE,Standard,control,3473.08,True
+S100608,FMCG,DE,Standard,treatment,2504.1878504019105,True
+S100612,FMCG,DE,Standard,treatment,449.6380958920796,True
+S100613,Fashion,UK,Plus,treatment,18.443113810866745,False
+S100615,Fashion,UK,Standard,treatment,1997.1047051453443,True
+S100616,Beauty,FR,Standard,treatment,4172.767897804634,True
+S100620,Home & Living,ES,Standard,control,198.70861476570113,False
+S100622,FMCG,FR,Standard,treatment,267.1702780886431,True
+S100624,Fashion,UK,Standard,control,8.477595369263568,False
+S100626,Electronics,UK,Standard,control,299.26387293181335,False
+S100629,Fashion,ES,Plus,treatment,103.24015149529689,False
+S100630,FMCG,DE,Standard,treatment,756.1480029020817,True
+S100631,Fashion,DE,Standard,treatment,2846.0616152893685,True
+S100636,Sports,UK,Standard,treatment,3203.2637178193754,True
+S100637,FMCG,UK,Standard,control,1362.15,True
+S100638,Home & Living,UK,Standard,control,1100.87,True
+S100639,Electronics,DE,Standard,treatment,7193.073297668245,True
+S100640,Beauty,UK,Plus,treatment,4150.803488930224,True
+S100641,Electronics,UK,Standard,treatment,5286.259422226145,True
+S100645,FMCG,UK,Standard,treatment,1908.2871027220108,True
+S100648,FMCG,UK,Standard,treatment,2175.9239896033487,True
+S100651,FMCG,DE,Plus,control,4098.82,True
+S100652,Fashion,UK,Plus,control,4937.27,True
+S100654,Beauty,IT,Standard,control,21.801913992363186,False
+S100656,Sports,IT,Standard,treatment,4279.271794266643,True
+S100661,Beauty,ES,Plus,control,4265.32,True
+S100665,Toys & Hobbies,ES,Standard,control,2093.85,True
+S100666,Fashion,FR,Standard,treatment,794.1521803299835,True
+S100667,Sports,UK,Standard,treatment,1015.5503117970441,True
+S100672,Beauty,DE,Standard,control,73.20537958411757,False
+S100673,Electronics,DE,Standard,control,3399.7799999999997,True
+S100676,Sports,ES,Standard,treatment,1864.7770503159963,True
+S100687,Beauty,FR,Standard,treatment,283.0730184425988,True
+S100688,Home & Living,UK,Standard,control,2227.8999999999996,True
+S100691,Electronics,UK,Standard,treatment,3174.6971051070227,True
+S100694,Toys & Hobbies,UK,Standard,treatment,671.075586830414,True
+S100696,FMCG,FR,Standard,treatment,25.30793341624772,False
+S100703,Toys & Hobbies,FR,Plus,treatment,743.1918778393896,False
+S100706,Home & Living,DE,Plus,control,4805.59,True
+S100707,Sports,ES,Standard,control,3428.91,True
+S100710,Fashion,IT,Standard,control,15.368026991695228,False
+S100711,Fashion,FR,Standard,control,1985.87,True
+S100712,FMCG,IT,Standard,control,2695.2799999999997,True
+S100713,Home & Living,IT,Plus,control,2766.02,True
+S100714,FMCG,IT,Standard,control,1526.45,True
+S100719,Beauty,FR,Standard,control,45.848266662621405,False
+S100723,FMCG,DE,Plus,treatment,276.959658446602,True
+S100735,Fashion,ES,Standard,treatment,4487.523262543347,True
+S100742,Electronics,ES,Standard,control,3269.42,True
+S100748,Electronics,UK,Standard,treatment,10482.815212277043,True
+S100749,FMCG,ES,Standard,treatment,16.7236997050114,False
+S100754,Home & Living,UK,Standard,control,1910.4699999999998,True
+S100757,Beauty,IT,Standard,treatment,1548.3704574369126,True
+S100760,Fashion,FR,Standard,control,2420.35,True
+S100764,Toys & Hobbies,IT,Standard,treatment,2518.748068204104,True
+S100773,FMCG,DE,Plus,control,91.05440292948836,False
+S100775,Fashion,DE,Standard,treatment,2064.59133879839,True
+S100778,Beauty,FR,Plus,treatment,3448.324443202301,True
+S100779,Sports,UK,Plus,control,978.7584939787796,False
+S100781,Sports,ES,Standard,treatment,480.06748084427596,True
+S100784,Fashion,IT,Standard,treatment,2149.916523459337,True
+S100786,Electronics,DE,Standard,treatment,3582.694751410555,True
+S100788,Beauty,FR,Plus,treatment,2651.893728606982,True
+S100798,Beauty,IT,Standard,treatment,2219.334954761474,True
+S100799,Home & Living,DE,Standard,treatment,1630.7940877212316,True
+S100800,FMCG,UK,Standard,treatment,989.0533663585176,True
+S100802,Toys & Hobbies,DE,Plus,control,90.87749329254552,False
+S100806,Home & Living,UK,Plus,control,4682.34,True
+S100809,FMCG,UK,Standard,treatment,473.8125233831562,True
+S100812,Toys & Hobbies,FR,Standard,treatment,1003.5063869111862,True
+S100815,FMCG,FR,Standard,treatment,1109.417077257522,True
+S100816,FMCG,UK,Standard,treatment,663.6922292841411,True
+S100823,FMCG,ES,Standard,treatment,718.94782644417,True
+S100824,Toys & Hobbies,FR,Standard,treatment,1587.115985785677,True
+S100828,FMCG,FR,Standard,control,30.807195121005396,False
+S100833,Sports,DE,Standard,control,305.6364001143697,False
+S100834,Electronics,DE,Standard,control,3881.3599999999997,True
+S100836,FMCG,ES,Plus,treatment,1353.760054394562,True
+S100837,Beauty,UK,Standard,treatment,1319.8147466256048,True
+S100841,FMCG,UK,Standard,treatment,1352.1142129449813,True
+S100845,FMCG,FR,Enterprise,control,5025.870000000001,True
+S100847,Home & Living,DE,Plus,treatment,266.5470252425423,False
+S100849,Beauty,ES,Enterprise,treatment,731.0311641367452,True
+S100852,Beauty,UK,Standard,treatment,1476.546441357532,True
+S100853,Fashion,UK,Standard,treatment,968.0483429452449,True
+S100856,Toys & Hobbies,UK,Standard,treatment,53.88471870614365,False
+S100857,Electronics,DE,Standard,treatment,19.376648735381444,False
+S100860,Home & Living,UK,Standard,treatment,3018.925687130888,True
+S100861,Sports,IT,Standard,treatment,2399.4739789332016,True
+S100862,Fashion,ES,Standard,control,1132.4299999999998,True
+S100865,FMCG,DE,Standard,control,685.1600000000001,True
+S100866,Electronics,UK,Standard,control,4357.82,True
+S100867,Fashion,UK,Standard,treatment,2017.0770234252032,True
+S100870,Home & Living,UK,Standard,treatment,113.94022245861143,False
+S100872,Electronics,UK,Standard,control,2325.47,True
+S100874,Toys & Hobbies,ES,Enterprise,control,1878.48,True
+S100875,FMCG,ES,Standard,control,353.3,True
+S100882,Beauty,DE,Standard,treatment,1305.330337043759,True
+S100889,Beauty,DE,Standard,treatment,1410.7686580544803,True
+S100891,Home & Living,FR,Plus,treatment,2095.618099265158,True
+S100894,Beauty,FR,Enterprise,control,568.6452156276292,False
+S100895,FMCG,DE,Standard,control,25.354499448227987,False
+S100904,Fashion,UK,Plus,treatment,942.5734028314276,True
+S100910,Sports,ES,Standard,control,1360.6,True
+S100911,FMCG,FR,Standard,treatment,2495.2288934322332,True
+S100912,Beauty,IT,Plus,treatment,5152.862062394501,True
+S100913,FMCG,FR,Plus,control,370.61,True
+S100914,Beauty,ES,Standard,treatment,1109.805329642629,True
+S100915,Beauty,ES,Plus,treatment,506.22164536964067,True
+S100921,FMCG,DE,Standard,control,114.94370509234089,False
+S100927,FMCG,UK,Standard,treatment,497.5329390568268,True
+S100929,Fashion,FR,Enterprise,treatment,8389.918009129577,True
+S100933,FMCG,DE,Standard,control,797.74,True
+S100934,Fashion,UK,Plus,control,2895.96,True
+S100936,Toys & Hobbies,UK,Standard,control,2203.04,True
+S100938,Fashion,ES,Standard,control,2597.22,True
+S100941,FMCG,UK,Standard,control,1508.08,True
+S100946,Toys & Hobbies,UK,Plus,control,59.10208145857778,False
+S100947,Electronics,ES,Standard,treatment,227.20713323664276,False
+S100948,FMCG,UK,Plus,treatment,2172.1093624288083,True
+S100954,Fashion,DE,Standard,control,841.78,True
+S100955,Electronics,UK,Standard,treatment,14656.597650955191,True
+S100956,Fashion,UK,Standard,treatment,1897.0866189937267,True
+S100964,Home & Living,UK,Standard,treatment,1271.5951828851926,True
+S100966,Beauty,DE,Standard,control,1413.67,True
+S100973,Beauty,ES,Standard,control,450.64,True
+S100980,Electronics,UK,Standard,treatment,2198.4621054022723,True
+S100981,Beauty,ES,Standard,treatment,969.5820213124656,True
+S100982,FMCG,IT,Standard,control,703.04,True
+S100985,Electronics,IT,Plus,control,7780.85,True
+S100989,FMCG,FR,Standard,control,46.502526427785575,False
+S100991,Electronics,UK,Standard,treatment,4011.6591051605524,True
+S100992,Beauty,UK,Standard,treatment,1603.220251650087,True
+S100994,Fashion,DE,Plus,control,180.81855226082746,False
+S100998,FMCG,DE,Plus,treatment,649.7774707937311,True
+S101006,Fashion,FR,Standard,control,32.20691340574513,False
+S101008,Beauty,IT,Standard,treatment,1675.174115194627,True
+S101010,Home & Living,DE,Standard,treatment,3253.722428806327,True
+S101013,Fashion,UK,Plus,control,7.427738451054415,False
+S101016,Beauty,DE,Standard,treatment,2193.135680336819,True
+S101017,Fashion,UK,Standard,treatment,998.6829697854654,True
+S101020,FMCG,FR,Standard,treatment,574.0618896807689,True
+S101021,FMCG,FR,Standard,treatment,1197.7915913250195,True
+S101022,Electronics,DE,Standard,treatment,3860.7063976966438,True
+S101024,Toys & Hobbies,FR,Standard,treatment,1823.931338541898,True
+S101026,FMCG,UK,Standard,control,449.87,True
+S101028,Home & Living,IT,Standard,treatment,201.0132776040392,False
+S101031,Home & Living,FR,Plus,treatment,5330.150279281807,True
+S101033,Beauty,DE,Standard,treatment,985.2815553207816,True
+S101041,FMCG,FR,Standard,treatment,1393.5345867574158,True
+S101043,Fashion,FR,Standard,treatment,124.40153246960192,False
+S101047,Beauty,FR,Standard,treatment,2267.7260789832767,True
+S101048,Fashion,UK,Standard,treatment,577.6243372257079,True
+S101050,Home & Living,DE,Standard,treatment,2850.042531425815,True
+S101055,Fashion,UK,Plus,treatment,1738.9988024852728,True
+S101056,Home & Living,ES,Standard,treatment,115.8272505555241,False
+S101059,Fashion,UK,Standard,treatment,4443.516654319982,True
+S101060,Toys & Hobbies,DE,Standard,treatment,1559.9118263866767,True
+S101065,Home & Living,UK,Standard,control,9.464219114419176,False
+S101067,Fashion,UK,Plus,treatment,61.58234608110404,False
+S101070,Fashion,UK,Enterprise,control,996.5148694759754,False
+S101073,Fashion,UK,Plus,control,3129.06,True
+S101074,Beauty,IT,Standard,control,1752.38,True
+S101081,Beauty,IT,Standard,control,1291.77,True
+S101082,FMCG,FR,Enterprise,control,1300.79,True
+S101083,Beauty,DE,Standard,treatment,241.27586097357357,False
+S101084,Electronics,IT,Standard,treatment,231.52893779114095,False
+S101085,Beauty,UK,Standard,control,105.98631527148349,False
+S101086,Electronics,IT,Plus,control,361.28040650546853,False
+S101087,Electronics,ES,Standard,control,3245.92,True
+S101097,FMCG,DE,Standard,control,103.63243325351156,False
+S101098,Electronics,UK,Standard,control,6151.74,True
+S101102,Sports,FR,Plus,control,2486.2000000000003,True
+S101103,Electronics,DE,Standard,treatment,9316.516776395689,True
+S101105,FMCG,FR,Standard,control,1259.03,True
+S101108,Fashion,DE,Standard,control,21.823836727177802,False
+S101113,FMCG,DE,Standard,treatment,180.782772009736,True
+S101114,Beauty,DE,Standard,control,274.14,True
+S101117,Beauty,DE,Plus,treatment,4391.89226495031,True
+S101119,FMCG,DE,Standard,treatment,1364.2954746006762,True
+S101120,FMCG,UK,Standard,treatment,1219.480574372383,True
+S101122,Beauty,UK,Plus,control,2528.0299999999997,True
+S101127,Toys & Hobbies,ES,Plus,control,4050.74,True
+S101129,Home & Living,IT,Standard,treatment,83.4014060035475,False
+S101130,Home & Living,DE,Plus,treatment,1035.7770995417486,True
+S101133,FMCG,UK,Standard,control,1318.1,True
+S101134,Sports,DE,Standard,control,34.86135916760525,False
+S101139,Fashion,UK,Standard,treatment,1353.879332975593,True
+S101141,Fashion,UK,Standard,control,2985.34,True
+S101142,Beauty,UK,Plus,treatment,549.9749562479342,False
+S101143,Beauty,FR,Standard,treatment,1417.4118811181436,True
+S101146,Sports,UK,Plus,treatment,5836.087754578347,True
+S101147,FMCG,UK,Plus,control,20.742088409987346,False
+S101149,Beauty,UK,Standard,treatment,1082.9983624180397,True
+S101151,Fashion,IT,Plus,control,363.0674519979021,False
+S101159,FMCG,DE,Plus,treatment,2593.3623661949455,True
+S101162,Electronics,FR,Standard,control,8568.76,True
+S101165,Beauty,UK,Enterprise,treatment,5894.972854460276,True
+S101166,FMCG,DE,Standard,treatment,655.1326872648177,True
+S101168,Home & Living,DE,Plus,treatment,4178.968055122883,True
+S101171,Fashion,UK,Enterprise,treatment,12196.307426891355,True
+S101173,Electronics,UK,Standard,control,7690.3099999999995,True
+S101175,Home & Living,UK,Standard,control,3685.49,True
+S101180,FMCG,UK,Standard,treatment,1356.4523216432206,True
+S101185,Fashion,UK,Plus,treatment,5350.697994948439,True
+S101187,FMCG,DE,Standard,treatment,481.29502083304783,True
+S101192,Home & Living,UK,Enterprise,treatment,16489.469819391335,True
+S101193,FMCG,UK,Standard,treatment,429.16960604408183,True
+S101194,Beauty,UK,Standard,control,1599.7,True
+S101197,Beauty,DE,Standard,control,2306.2200000000003,True
+S101199,Sports,UK,Standard,treatment,1071.2513887051468,True
+S101202,Fashion,ES,Standard,treatment,4122.091369266309,True
+S101203,Electronics,UK,Standard,control,5343.4,True
+S101210,Toys & Hobbies,UK,Standard,treatment,1602.1162703459681,True
+S101211,Electronics,UK,Plus,control,9839.060000000001,True
+S101218,Electronics,UK,Standard,control,2068.8599999999997,True
+S101222,Beauty,UK,Plus,treatment,5017.823951738265,True
+S101225,Fashion,IT,Standard,control,1434.6100000000001,True
+S101228,Beauty,DE,Plus,control,2348.87,True
+S101233,Home & Living,DE,Standard,control,1584.26,True
+S101240,Home & Living,DE,Standard,control,244.05764510149325,False
+S101248,Home & Living,UK,Standard,treatment,4433.1903845814195,True
+S101249,Electronics,FR,Standard,control,3536.2,True
+S101255,Toys & Hobbies,ES,Standard,treatment,1506.1109250459065,True
+S101256,Beauty,UK,Standard,treatment,2383.79509074149,True
+S101257,Fashion,IT,Standard,control,1481.51,True
+S101259,Beauty,ES,Standard,treatment,1274.0599352872828,True
+S101263,Beauty,DE,Plus,control,1257.32,True
+S101265,Electronics,ES,Plus,control,7473.8,True
+S101267,FMCG,FR,Standard,control,78.21113865788024,False
+S101270,Home & Living,DE,Standard,treatment,122.7616213080311,True
+S101278,Electronics,UK,Standard,control,57.50923336665331,False
+S101284,Beauty,DE,Plus,control,21.80518178548852,False
+S101285,Home & Living,IT,Plus,control,347.0394644297767,False
+S101291,Beauty,FR,Standard,treatment,1582.2227378286643,True
+S101298,Beauty,FR,Standard,control,2155.2,True
+S101302,Beauty,DE,Standard,control,2366.22,True
+S101304,Home & Living,IT,Plus,treatment,1248.0615136014014,True
+S101305,Fashion,UK,Standard,treatment,215.84532196190392,False
+S101307,Beauty,FR,Standard,control,1461.84,True
+S101309,Home & Living,DE,Standard,treatment,2268.981363157845,True
+S101311,Beauty,ES,Standard,treatment,1181.4444224820884,True
+S101315,Beauty,UK,Enterprise,treatment,5382.991929949324,True
+S101318,FMCG,UK,Standard,treatment,80.7762244011268,False
+S101319,Fashion,DE,Standard,treatment,255.9157255947885,False
+S101323,Beauty,DE,Standard,control,3109.41,True
+S101325,Electronics,UK,Plus,control,3391.2799999999997,True
+S101330,FMCG,FR,Standard,control,417.65,True
+S101333,Beauty,DE,Standard,control,510.19,True
+S101334,Beauty,DE,Plus,treatment,1041.7829344323297,True
+S101335,Fashion,UK,Plus,treatment,3129.3488900791053,True
+S101338,Home & Living,FR,Standard,treatment,2265.85244658412,True
+S101341,Electronics,DE,Standard,treatment,4939.682100533739,True
+S101344,Beauty,DE,Standard,control,17.565294690818803,False
+S101350,Beauty,UK,Standard,control,1518.56,True
+S101351,Home & Living,DE,Standard,control,7928.58,True
+S101354,Toys & Hobbies,DE,Standard,treatment,2994.4365158447977,True
+S101358,Home & Living,DE,Standard,treatment,1982.0080732538863,True
+S101360,Home & Living,DE,Plus,control,6863.490000000001,True
+S101371,Electronics,FR,Standard,treatment,3754.317850536863,True
+S101373,FMCG,UK,Plus,treatment,1146.063637039383,True
+S101374,Electronics,ES,Standard,control,2992.71,True
+S101377,Fashion,IT,Standard,treatment,3389.705926363442,True
+S101383,Beauty,DE,Standard,control,429.29,True
+S101384,FMCG,IT,Standard,treatment,279.84487002540817,True
+S101386,Home & Living,UK,Standard,control,1451.56,True
+S101388,Toys & Hobbies,UK,Standard,control,104.83613668478962,False
+S101390,Electronics,UK,Standard,treatment,46.4925949832669,False
+S101391,FMCG,FR,Plus,control,2711.03,True
+S101394,Electronics,UK,Standard,control,4215.17,True
+S101397,Beauty,ES,Standard,treatment,802.858300582274,True
