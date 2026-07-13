@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merchant Growth Engine — TikTok Shop Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg: #0A0D12;
+    --surface: #12151C;
+    --surface-2: #171B24;
+    --border: #262B38;
+    --text: #EDEFF3;
+    --muted: #8891A4;
+    --muted-2: #5B6376;
+    --teal: #29D9C2;
+    --pink: #FF4D8D;
+    --amber: #FFB020;
+    --green: #3DDC84;
+    --red: #FF5D5D;
+    --radius: 10px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1100px 500px at 12% -10%, rgba(41,217,194,0.08), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(255,77,141,0.06), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .display{font-family:'Space Grotesk',sans-serif;}
+  a{color:inherit;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+
+  /* ---------- header ---------- */
+  header.top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 24px;border-bottom:1px solid var(--border);
+    max-width:1180px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand .mark{
+    width:34px;height:34px;border-radius:8px;
+    background:linear-gradient(135deg,var(--teal),var(--pink));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;color:#0A0D12;font-size:15px;
+  }
+  .brand h1{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;margin:0;letter-spacing:0.2px;}
+  .brand p{margin:0;font-size:12px;color:var(--muted);}
+  .status{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(61,220,132,0.6);animation:pulse 2.2s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(61,220,132,0.55);}
+    70%{box-shadow:0 0 0 7px rgba(61,220,132,0);}
+    100%{box-shadow:0 0 0 0 rgba(61,220,132,0);}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{padding:44px 0 30px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;
+    color:var(--teal);text-transform:uppercase;margin:0 0 10px;
+  }
+  .hero h2{font-family:'Space Grotesk',sans-serif;font-size:32px;line-height:1.2;margin:0 0 12px;max-width:720px;font-weight:600;}
+  .hero p{color:var(--muted);max-width:600px;margin:0;font-size:14.5px;}
+
+  /* ---------- kpi strip ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:30px;}
+  .kpi{background:var(--surface);padding:18px 16px;}
+  .kpi .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;}
+  .kpi .value{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;}
+  .kpi .value.teal{color:var(--teal);}
+  .kpi .sub{font-size:11px;color:var(--muted-2);margin-top:4px;}
+
+  /* ---------- section shell ---------- */
+  section{margin-top:52px;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;gap:16px;flex-wrap:wrap;}
+  .section-head h3{font-family:'Space Grotesk',sans-serif;font-size:20px;margin:0;font-weight:600;}
+  .section-head .tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
+  .section-desc{color:var(--muted);font-size:13.5px;max-width:680px;margin:-8px 0 20px;}
+
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;}
+  .grid-2{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media (max-width:860px){.grid-2,.grid-3,.kpis{grid-template-columns:1fr;}}
+
+  /* ---------- cohort heatmap ---------- */
+  .heatmap-scroll{overflow-x:auto;}
+  table.heatmap{border-collapse:collapse;width:100%;font-family:'JetBrains Mono',monospace;font-size:11px;}
+  table.heatmap th{text-align:center;color:var(--muted);font-weight:500;padding:4px 6px;font-size:10.5px;}
+  table.heatmap td.rowlabel{color:var(--muted);white-space:nowrap;padding-right:10px;font-size:10.5px;text-align:right;}
+  table.heatmap td.cell{width:34px;height:26px;text-align:center;border-radius:3px;color:#0A0D12;font-weight:600;}
+  table.heatmap td.empty{background:transparent;}
+
+  .legend{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:11px;color:var(--muted);}
+  .legend .swatch{width:12px;height:12px;border-radius:3px;}
+
+  /* ---------- stat cards (A/B test) ---------- */
+  .stat-card{border:1px solid var(--border);border-radius:var(--radius);padding:18px;background:var(--surface-2);}
+  .stat-card h4{margin:0 0 4px;font-size:13px;color:var(--muted);font-weight:500;}
+  .stat-card .big{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;margin:4px 0;}
+  .stat-card .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:10px;border-top:1px solid var(--border);padding-top:10px;}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-family:'JetBrains Mono',monospace;padding:3px 9px;border-radius:20px;margin-top:10px;}
+  .pill.sig{background:rgba(61,220,132,0.12);color:var(--green);}
+  .pill.nonsig{background:rgba(255,176,32,0.12);color:var(--amber);}
+
+  table.simple{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px;}
+  table.simple th{text-align:left;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:0.04em;}
+  table.simple td{padding:9px 10px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:12px;}
+  table.simple tr:last-child td{border-bottom:none;}
+  table.simple td.up{color:var(--green);}
+  table.simple td.down{color:var(--red);}
+
+  /* ---------- health / leaderboard ---------- */
+  .risk-bar-bg{background:var(--surface);border-radius:4px;height:6px;width:100%;overflow:hidden;border:1px solid var(--border);}
+  .risk-bar-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--red));}
+  .metric-row{display:flex;justify-content:space-between;font-size:12px;padding:8px 0;border-bottom:1px solid var(--border);}
+  .metric-row:last-child{border-bottom:none;}
+  .metric-row .k{color:var(--muted);}
+  .metric-row .v{font-family:'JetBrains Mono',monospace;}
+
+  footer{margin-top:70px;padding-top:24px;border-top:1px solid var(--border);color:var(--muted-2);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  .chart-wrap{position:relative;height:280px;}
+  .toggle-row{display:flex;gap:8px;}
+  .toggle-btn{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--surface-2);border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:20px;cursor:pointer;}
+  .toggle-btn.active{color:var(--bg);background:var(--teal);border-color:var(--teal);font-weight:600;}
+
+  ::-webkit-scrollbar{height:8px;width:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="mark">M</div>
+    <div>
+      <h1>Merchant Growth Engine</h1>
+      <p>TikTok Shop EMEA · Seller Analytics</p>
+    </div>
+  </div>
+  <div class="status"><span class="dot"></span><span id="lastUpdated" class="mono">synced</span></div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">Merchant Analytics · Prototype</p>
+    <h2 class="display">Retention, experimentation, and churn risk for TikTok Shop's EMEA seller base.</h2>
+    <p>A self-serve view of merchant lifecycle health: cohort retention, an onboarding-flow A/B test, a churn-risk scoring model, and a 3-month GMV forecast — built on a synthetic marketplace dataset modeled on TikTok Shop's category mix (FMCG, Beauty, Fashion, Home, Electronics).</p>
+  </div>
+
+  <div class="kpis" id="kpiStrip"></div>
+
+  <!-- ============ COHORT RETENTION ============ -->
+  <section id="cohort">
+    <div class="section-head">
+      <h3>Merchant lifecycle &amp; retention</h3>
+      <span class="tag">cohort analysis</span>
+    </div>
+    <p class="section-desc">Each row is a signup cohort; each column is months since signup. Cell = % of that cohort still placing orders. Reads like a fingerprint of onboarding quality over time.</p>
+    <div class="panel">
+      <div class="heatmap-scroll">
+        <table class="heatmap" id="heatmapTable"></table>
+      </div>
+      <div class="legend">
+        <span>Retention:</span>
+        <span class="swatch" style="background:#7A1F2B"></span><span>&lt;60%</span>
+        <span class="swatch" style="background:#C24A3E"></span><span>70%</span>
+        <span class="swatch" style="background:#E8A33D"></span><span>80%</span>
+        <span class="swatch" style="background:#8FCB6B"></span><span>90%</span>
+        <span class="swatch" style="background:#29D9C2"></span><span>100%</span>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:18px;">
+      <div class="panel">
+        <h4 style="margin:0 0 12px;font-size:13px;color:var(--muted);font-weight:500;">Retention at month 3, by category</h4>
+        <div class="chart-wrap" style="height:230px;"><canvas id="categoryRetentionChart"></canvas></div>
+      </div>
+      <div class="panel">
+        <h4 style="margin:0 0 12px;font-size:13px;color:var(--muted);font-weight:500;">Reading the heatmap</h4>
+        <p style="font-size:12.5px;color:var(--muted);margin:0 0 10px;">Retention is consistently strong through month 2 (onboarding rarely loses sellers immediately), then bends downward from month 4–6 as low-fit sellers churn out — the window the health model below is built to catch early.</p>
+        <p style="font-size:12.5px;color:var(--muted);margin:0;">FMCG cohorts retain best at the 3-month checkpoint, consistent with lower return rates and more repeatable, low-consideration purchases — a useful data point for prioritizing FMCG brand incubation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ A/B TEST ============ -->
+  <section id="abtest">
+    <div class="section-head">
+      <h3>Onboarding flow experiment</h3>
+      <span class="tag">A/B test · n=<span id="abN"></span></span>
+    </div>
+    <p class="section-desc">New sellers from the last 6 months were randomized into a streamlined onboarding flow (treatment) vs. the legacy flow (control). Two primary metrics: 14-day activation rate and 90-day GMV.</p>
+
+    <div class="grid-3">
+      <div class="stat-card">
+        <h4>Activation rate (14 days)</h4>
+        <div class="big" id="activationLift"></div>
+        <div style="font-size:12px;color:var(--muted);" id="activationMeans"></div>
+        <div class="pill" id="activationSigPill"></div>
+      </div>
+      <div class="stat-card">
+        <h4>90-day GMV lift</h4>
+        <div class="big" id="gmvLift"></div>
+        <div style="font-size:12px;color:var(--muted);" id="gmvMeans"></div>
+        <div class="pill" id="gmvSigPill"></div>
+      </div>
+      <div class="stat-card">
+        <h4>Statistical read</h4>
+        <div class="metric-row"><span class="k">Activation p-value</span><span class="v" id="pvalActivation"></span></div>
+        <div class="metric-row"><span class="k">GMV p-value</span><span class="v" id="pvalGmv"></span></div>
+        <div class="metric-row"><span class="k">Observed power (GMV)</span><span class="v" id="powerGmv"></span></div>
+        <div class="metric-row"><span class="k">MDE at 80% power</span><span class="v" id="mdeGmv"></span></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:18px;">
+      <h4 style="margin:0 0 4px;font-size:13px;color:var(--muted);font-weight:500;">Segment breakdown — GMV lift by category</h4>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 4px;">None of these are individually significant at current sample sizes — shown to illustrate where a follow-up test should focus, not as a decision-ready result.</p>
+      <table class="simple" id="segmentTable"></table>
+    </div>
+  </section>
+
+  <!-- ============ HEALTH MODEL ============ -->
+  <section id="health">
+    <div class="section-head">
+      <h3>Merchant health &amp; churn risk</h3>
+      <span class="tag">gradient boosting classifier</span>
+    </div>
+    <p class="section-desc">Predicts whether an active seller goes dark in the next 2 months, using their first 3 months of orders, GMV trend, returns, and ad spend. Trained on a class-imbalanced churn label (~<span id="churnRate"></span> base rate) with balanced sample weighting.</p>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h4 style="margin:0 0 14px;font-size:13px;color:var(--muted);font-weight:500;">Model performance (held-out test set)</h4>
+        <div id="modelMetrics"></div>
+        <h4 style="margin:20px 0 10px;font-size:13px;color:var(--muted);font-weight:500;">Top predictive features</h4>
+        <div class="chart-wrap" style="height:220px;"><canvas id="featureImportanceChart"></canvas></div>
+      </div>
+      <div class="panel">
+        <h4 style="margin:0 0 12px;font-size:13px;color:var(--muted);font-weight:500;">Highest churn-risk sellers right now</h4>
+        <table class="simple" id="leaderboardTable"></table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FORECAST ============ -->
+  <section id="forecast">
+    <div class="section-head">
+      <h3>GMV forecast</h3>
+      <span class="tag">Holt's exponential smoothing</span>
+    </div>
+    <p class="section-desc">3-month forward GMV projection. Smoothing parameters (α, β) are chosen by grid search against a 4-month holdout.</p>
+    <div class="panel">
+      <div class="toggle-row" style="margin-bottom:14px;">
+        <button class="toggle-btn active" data-series="total">Total marketplace</button>
+        <button class="toggle-btn" data-series="fmcg">FMCG only</button>
+      </div>
+      <div class="chart-wrap"><canvas id="forecastChart"></canvas></div>
+      <div class="metric-row" style="margin-top:10px;">
+        <span class="k">Smoothing params (α, β) · holdout MAE</span>
+        <span class="v" id="forecastParams"></span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Synthetic dataset · 1,400 sellers · 30 months · seeded for reproducibility</span>
+    <span>Built with pandas, scikit-learn, scipy · no external forecasting library</span>
+  </footer>
+
+</div>
+
+<script>
+const DATA = {
+  "generated_at": "2026-07-13",
+  "kpis": {
+    "total_sellers": 1400,
+    "active_sellers_latest_month": 748,
+    "gmv_ttm": 9650926.0,
+    "avg_return_rate_pct": 8.34,
+    "fmcg_gmv_share_pct": 11.1,
+    "latest_month": "2026-05-01"
+  },
+  "cohort": {
+    "months": [
+      "2024-01-01",
+      "2024-02-01",
+      "2024-03-01",
+      "2024-04-01",
+      "2024-05-01",
+      "2024-06-01",
+      "2024-07-01",
+      "2024-08-01",
+      "2024-09-01",
+      "2024-10-01",
+      "2024-11-01",
+      "2024-12-01",
+      "2025-01-01",
+      "2025-02-01",
+      "2025-03-01",
+      "2025-04-01",
+      "2025-05-01",
+      "2025-06-01",
+      "2025-07-01",
+      "2025-08-01",
+      "2025-09-01",
+      "2025-10-01",
+      "2025-11-01",
+      "2025-12-01",
+      "2026-01-01",
+      "2026-02-01",
+      "2026-03-01",
+      "2026-04-01",
+      "2026-05-01",
+      "2026-06-01"
+    ],
+    "tenure_cols": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "matrix": [
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.889,
+        0.722,
+        0.722,
+        0.722,
+        0.667,
+        0.611
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        0.947,
+        0.947,
+        0.842,
+        0.842,
+        0.789,
+        0.684,
+        0.684
+      ],
+      [
+        1.0,
+        1.0,
+        0.958,
+        0.958,
+        0.875,
+        0.833,
+        0.75,
+        0.667,
+        0.625,
+        0.625
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        0.967,
+        0.933,
+        0.767,
+        0.667,
+        0.567,
+        0.567,
+        0.567
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.833,
+        0.583,
+        0.417,
+        0.417,
+        0.333,
+        0.333
+      ],
+      [
+        1.0,
+        1.0,
+        0.969,
+        0.938,
+        0.844,
+        0.781,
+        0.75,
+        0.656,
+        0.594,
+        0.562
+      ],
+      [
+        1.0,
+        1.0,
+        0.976,
+        0.929,
+        0.857,
+        0.809,
+        0.762,
+        0.738,
+        0.643,
+        0.571
+      ],
+      [
+        1.0,
+        1.0,
+        0.955,
+        0.909,
+        0.818,
+        0.727,
+        0.636,
+        0.568,
+        0.545,
+        0.545
+      ],
+      [
+        1.0,
+        1.0,
+        0.974,
+        0.947,
+        0.895,
+        0.789,
+        0.737,
+        0.605,
+        0.579,
+        0.526
+      ],
+      [
+        1.0,
+        1.0,
+        0.943,
+        0.943,
+        0.886,
+        0.8,
+        0.743,
+        0.743,
+        0.657,
+        0.629
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.914,
+        0.914,
+        0.771,
+        0.714,
+        0.629,
+        0.543
+      ],
+      [
+        1.0,
+        1.0,
+        0.939,
+        0.939,
+        0.909,
+        0.818,
+        0.667,
+        0.636,
+        0.515,
+        0.515
+      ],
+      [
+        1.0,
+        1.0,
+        0.971,
+        0.941,
+        0.853,
+        0.824,
+        0.735,
+        0.735,
+        0.647,
+        0.647
+      ],
+      [
+        1.0,
+        1.0,
+        0.927,
+        0.878,
+        0.78,
+        0.732,
+        0.658,
+        0.634,
+        0.561,
+        0.488
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        0.963,
+        0.907,
+        0.815,
+        0.759,
+        0.704,
+        0.648,
+        0.611
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        0.974,
+        0.789,
+        0.711,
+        0.658,
+        0.605,
+        0.526,
+        0.5
+      ],
+      [
+        1.0,
+        1.0,
+        0.926,
+        0.907,
+        0.889,
+        0.815,
+        0.759,
+        0.648,
+        0.574,
+        0.556
+      ],
+      [
+        1.0,
+        1.0,
+        0.941,
+        0.941,
+        0.902,
+        0.882,
+        0.745,
+        0.726,
+        0.667,
+        0.667
+      ],
+      [
+        1.0,
+        1.0,
+        0.946,
+        0.893,
+        0.857,
+        0.75,
+        0.714,
+        0.607,
+        0.536,
+        0.5
+      ],
+      [
+        1.0,
+        1.0,
+        0.962,
+        0.943,
+        0.887,
+        0.849,
+        0.774,
+        0.698,
+        0.623,
+        0.528
+      ],
+      [
+        1.0,
+        1.0,
+        0.983,
+        0.966,
+        0.897,
+        0.845,
+        0.759,
+        0.655,
+        0.534,
+        0.5
+      ],
+      [
+        1.0,
+        1.0,
+        0.968,
+        0.952,
+        0.903,
+        0.806,
+        0.71,
+        0.661,
+        0.581,
+        null
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        0.948,
+        0.914,
+        0.793,
+        0.759,
+        0.724,
+        null,
+        null
+      ],
+      [
+        1.0,
+        1.0,
+        0.966,
+        0.932,
+        0.848,
+        0.831,
+        0.797,
+        null,
+        null,
+        null
+      ],
+      [
+        1.0,
+        1.0,
+        0.982,
+        0.946,
+        0.911,
+        0.804,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        1.0,
+        1.0,
+        0.986,
+        0.945,
+        0.836,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        1.0,
+        1.0,
+        0.986,
+        0.971,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        1.0,
+        1.0,
+        0.961,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        1.0,
+        1.0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        1.0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "cohort_sizes": {
+      "2024-01-01": 18,
+      "2024-02-01": 19,
+      "2024-03-01": 24,
+      "2024-04-01": 30,
+      "2024-05-01": 12,
+      "2024-06-01": 32,
+      "2024-07-01": 42,
+      "2024-08-01": 44,
+      "2024-09-01": 38,
+      "2024-10-01": 35,
+      "2024-11-01": 35,
+      "2024-12-01": 33,
+      "2025-01-01": 34,
+      "2025-02-01": 41,
+      "2025-03-01": 54,
+      "2025-04-01": 38,
+      "2025-05-01": 54,
+      "2025-06-01": 51,
+      "2025-07-01": 56,
+      "2025-08-01": 53,
+      "2025-09-01": 58,
+      "2025-10-01": 62,
+      "2025-11-01": 58,
+      "2025-12-01": 59,
+      "2026-01-01": 56,
+      "2026-02-01": 73,
+      "2026-03-01": 69,
+      "2026-04-01": 76,
+      "2026-05-01": 71,
+      "2026-06-01": 75
+    },
+    "category_retention_m3": [
+      {
+        "category": "Toys & Hobbies",
+        "cohort_size": 101,
+        "active_at_checkpoint": 97,
+        "retention_rate": 0.9604
+      },
+      {
+        "category": "Electronics",
+        "cohort_size": 151,
+        "active_at_checkpoint": 145,
+        "retention_rate": 0.9603
+      },
+      {
+        "category": "Home & Living",
+        "cohort_size": 145,
+        "active_at_checkpoint": 139,
+        "retention_rate": 0.9586
+      },
+      {
+        "category": "FMCG",
+        "cohort_size": 250,
+        "active_at_checkpoint": 239,
+        "retention_rate": 0.956
+      },
+      {
+        "category": "Sports",
+        "cohort_size": 74,
+        "active_at_checkpoint": 70,
+        "retention_rate": 0.9459
+      },
+      {
+        "category": "Beauty",
+        "cohort_size": 230,
+        "active_at_checkpoint": 213,
+        "retention_rate": 0.9261
+      },
+      {
+        "category": "Fashion",
+        "cohort_size": 227,
+        "active_at_checkpoint": 209,
+        "retention_rate": 0.9207
+      }
+    ]
+  },
+  "ab_test": {
+    "sample_size": {
+      "control": 220,
+      "treatment": 259
+    },
+    "gmv_90d_test": {
+      "control_mean": 2020.35,
+      "treatment_mean": 2287.6,
+      "abs_lift": 267.24,
+      "rel_lift_pct": 13.23,
+      "t_stat": 1.259,
+      "p_value": 0.20879,
+      "cohens_d": 0.114,
+      "ci_95_low": -148.93,
+      "ci_95_high": 683.42,
+      "significant_at_5pct": false,
+      "power_observed": 0.238,
+      "mde_at_80pct_power": 625.28
+    },
+    "activation_test": {
+      "control_rate": 0.7091,
+      "treatment_rate": 0.8301,
+      "abs_lift_pp": 12.1,
+      "rel_lift_pct": 17.07,
+      "chi2_stat": 9.296,
+      "p_value": 0.0023,
+      "ci_95_low_pp": 4.59,
+      "ci_95_high_pp": 19.61,
+      "significant_at_5pct": true
+    },
+    "segment_breakdown": [
+      {
+        "category": "Beauty",
+        "n_control": 43,
+        "n_treatment": 54,
+        "control_mean": 1340.03,
+        "treatment_mean": 2150.44,
+        "abs_lift": 810.41,
+        "rel_lift_pct": 60.48,
+        "t_stat": 2.908,
+        "p_value": 0.00452,
+        "cohens_d": 0.577,
+        "ci_95_low": 264.26,
+        "ci_95_high": 1356.57,
+        "significant_at_5pct": true
+      },
+      {
+        "category": "Electronics",
+        "n_control": 33,
+        "n_treatment": 31,
+        "control_mean": 3809.84,
+        "treatment_mean": 4854.04,
+        "abs_lift": 1044.2,
+        "rel_lift_pct": 27.41,
+        "t_stat": 1.256,
+        "p_value": 0.21412,
+        "cohens_d": 0.316,
+        "ci_95_low": -585.14,
+        "ci_95_high": 2673.53,
+        "significant_at_5pct": false
+      },
+      {
+        "category": "FMCG",
+        "n_control": 44,
+        "n_treatment": 58,
+        "control_mean": 1158.05,
+        "treatment_mean": 1120.67,
+        "abs_lift": -37.38,
+        "rel_lift_pct": -3.23,
+        "t_stat": -0.157,
+        "p_value": 0.87535,
+        "cohens_d": -0.033,
+        "ci_95_low": -502.73,
+        "ci_95_high": 427.96,
+        "significant_at_5pct": false
+      },
+      {
+        "category": "Fashion",
+        "n_control": 37,
+        "n_treatment": 43,
+        "control_mean": 1488.04,
+        "treatment_mean": 2276.33,
+        "abs_lift": 788.29,
+        "rel_lift_pct": 52.97,
+        "t_stat": 1.761,
+        "p_value": 0.08292,
+        "cohens_d": 0.378,
+        "ci_95_low": -89.14,
+        "ci_95_high": 1665.71,
+        "significant_at_5pct": false
+      },
+      {
+        "category": "Home & Living",
+        "n_control": 32,
+        "n_treatment": 34,
+        "control_mean": 2945.74,
+        "treatment_mean": 2243.54,
+        "abs_lift": -702.2,
+        "rel_lift_pct": -23.84,
+        "t_stat": -0.957,
+        "p_value": 0.34215,
+        "cohens_d": -0.235,
+        "ci_95_low": -2140.28,
+        "ci_95_high": 735.88,
+        "significant_at_5pct": false
+      },
+      {
+        "category": "Sports",
+        "n_control": 16,
+        "n_treatment": 21,
+        "control_mean": 1538.94,
+        "treatment_mean": 2414.13,
+        "abs_lift": 875.19,
+        "rel_lift_pct": 56.87,
+        "t_stat": 1.48,
+        "p_value": 0.14783,
+        "cohens_d": 0.475,
+        "ci_95_low": -283.86,
+        "ci_95_high": 2034.24,
+        "significant_at_5pct": false
+      },
+      {
+        "category": "Toys & Hobbies",
+        "n_control": 15,
+        "n_treatment": 18,
+        "control_mean": 2415.53,
+        "treatment_mean": 2001.68,
+        "abs_lift": -413.85,
+        "rel_lift_pct": -17.13,
+        "t_stat": -0.622,
+        "p_value": 0.53963,
+        "cohens_d": -0.226,
+        "ci_95_low": -1717.07,
+        "ci_95_high": 889.37,
+        "significant_at_5pct": false
+      }
+    ]
+  },
+  "health_model": {
+    "model_results": {
+      "gradient_boosting": {
+        "roc_auc": 0.609,
+        "precision": 0.136,
+        "recall": 0.188,
+        "f1": 0.158,
+        "confusion_matrix": [
+          [
+            209,
+            19
+          ],
+          [
+            13,
+            3
+          ]
+        ],
+        "test_churn_rate": 0.066,
+        "n_test": 244
+      },
+      "logistic_regression": {
+        "roc_auc": 0.509,
+        "precision": 0.06,
+        "recall": 0.438,
+        "f1": 0.105,
+        "confusion_matrix": [
+          [
+            118,
+            110
+          ],
+          [
+            9,
+            7
+          ]
+        ],
+        "test_churn_rate": 0.066,
+        "n_test": 244
+      }
+    },
+    "feature_importance": [
+      {
+        "feature": "return_rate",
+        "importance": 0.18650592144277603
+      },
+      {
+        "feature": "avg_ads_spend",
+        "importance": 0.16675585149201033
+      },
+      {
+        "feature": "avg_orders",
+        "importance": 0.12637240916106074
+      },
+      {
+        "feature": "gmv_trend",
+        "importance": 0.11943888857850643
+      },
+      {
+        "feature": "seller_quality",
+        "importance": 0.10087135768927152
+      },
+      {
+        "feature": "gmv_std",
+        "importance": 0.09437012665204875
+      },
+      {
+        "feature": "avg_gmv",
+        "importance": 0.09404126452238272
+      },
+      {
+        "feature": "category_Sports",
+        "importance": 0.030815972381583404
+      },
+      {
+        "feature": "category_Beauty",
+        "importance": 0.02145032674951801
+      },
+      {
+        "feature": "tier_Standard",
+        "importance": 0.018773004036707376
+      }
+    ],
+    "at_risk_leaderboard": [
+      {
+        "seller_id": "S101216",
+        "category": "FMCG",
+        "country": "UK",
+        "tier": "Standard",
+        "churn_risk_score": 0.952
+      },
+      {
+        "seller_id": "S100349",
+        "category": "Fashion",
+        "country": "UK",
+        "tier": "Standard",
+        "churn_risk_score": 0.942
+      },
+      {
+        "seller_id": "S101063",
+        "category": "Fashion",
+        "country": "UK",
+        "tier": "Plus",
+        "churn_risk_score": 0.938
+      },
+      {
+        "seller_id": "S100262",
+        "category": "Electronics",
+        "country": "UK",
+        "tier": "Standard",
+        "churn_risk_score": 0.922
+      },
+      {
+        "seller_id": "S100221",
+        "category": "Fashion",
+        "country": "FR",
+        "tier": "Standard",
+        "churn_risk_score": 0.914
+      },
+      {
+        "seller_id": "S101181",
+        "category": "Electronics",
+        "country": "DE",
+        "tier": "Standard",
+        "churn_risk_score": 0.913
+      },
+      {
+        "seller_id": "S100692",
+        "category": "Fashion",
+        "country": "ES",
+        "tier": "Standard",
+        "churn_risk_score": 0.911
+      },
+      {
+        "seller_id": "S100287",
+        "category": "Fashion",
+        "country": "DE",
+        "tier": "Standard",
+        "churn_risk_score": 0.908
+      },
+      {
+        "seller_id": "S101135",
+        "category": "Fashion",
+        "country": "UK",
+        "tier": "Plus",
+        "churn_risk_score": 0.904
+      },
+      {
+        "seller_id": "S101347",
+        "category": "FMCG",
+        "country": "FR",
+        "tier": "Standard",
+        "churn_risk_score": 0.9
+      },
+      {
+        "seller_id": "S101242",
+        "category": "Fashion",
+        "country": "UK",
+        "tier": "Plus",
+        "churn_risk_score": 0.895
+      },
+      {
+        "seller_id": "S101356",
+        "category": "Toys & Hobbies",
+        "country": "IT",
+        "tier": "Standard",
+        "churn_risk_score": 0.891
+      },
+      {
+        "seller_id": "S101057",
+        "category": "FMCG",
+        "country": "DE",
+        "tier": "Standard",
+        "churn_risk_score": 0.889
+      },
+      {
+        "seller_id": "S100771",
+        "category": "Beauty",
+        "country": "UK",
+        "tier": "Standard",
+        "churn_risk_score": 0.887
+      },
+      {
+        "seller_id": "S100231",
+        "category": "Toys & Hobbies",
+        "country": "UK",
+        "tier": "Plus",
+        "churn_risk_score": 0.88
+      }
+    ],
+    "churn_rate_observed": 0.0676,
+    "n_sellers_scored": 976
+  },
+  "forecast": {
+    "total": {
+      "params": {
+        "alpha": 0.9,
+        "beta": 0.85,
+        "holdout_mae": 14071.2
+      },
+      "history": {
+        "2024-01-01": 17727.7,
+        "2024-02-01": 42747.1,
+        "2024-03-01": 59032.8,
+        "2024-04-01": 84640.3,
+        "2024-05-01": 90829.2,
+        "2024-06-01": 109719.7,
+        "2024-07-01": 170103.7,
+        "2024-08-01": 206993.3,
+        "2024-09-01": 247032.2,
+        "2024-10-01": 278000.1,
+        "2024-11-01": 297163.9,
+        "2024-12-01": 334421.5,
+        "2025-01-01": 332325.1,
+        "2025-02-01": 390207.5,
+        "2025-03-01": 455678.7,
+        "2025-04-01": 447531.5,
+        "2025-05-01": 504714.1,
+        "2025-06-01": 560621.3,
+        "2025-07-01": 596207.6,
+        "2025-08-01": 618790.0,
+        "2025-09-01": 645105.7,
+        "2025-10-01": 679874.5,
+        "2025-11-01": 708085.7,
+        "2025-12-01": 691270.5,
+        "2026-01-01": 752479.5,
+        "2026-02-01": 788152.5,
+        "2026-03-01": 826150.0,
+        "2026-04-01": 886334.6,
+        "2026-05-01": 951197.7
+      },
+      "fitted": {
+        "2024-01-01": 17727.7,
+        "2024-02-01": 42747.1,
+        "2024-03-01": 67766.5,
+        "2024-04-01": 78244.3,
+        "2024-05-01": 107231.8,
+        "2024-06-01": 103152.5,
+        "2024-07-01": 124769.9,
+        "2024-08-01": 215957.7,
+        "2024-09-01": 251419.3,
+        "2024-10-01": 287644.3,
+        "2024-11-01": 311760.1,
+        "2024-12-01": 320253.0,
+        "2025-01-01": 365473.0,
+        "2025-02-01": 342750.2,
+        "2025-03-01": 428876.8,
+        "2025-04-01": 516917.1,
+        "2025-05-01": 465308.6,
+        "2025-06-01": 541757.3,
+        "2025-07-01": 614149.6,
+        "2025-08-01": 639690.9,
+        "2025-09-01": 646580.0,
+        "2025-10-01": 669825.3,
+        "2025-11-01": 711129.3,
+        "2025-12-01": 738321.4,
+        "2026-01-01": 689913.1,
+        "2026-02-01": 788023.6,
+        "2026-03-01": 830039.0,
+        "2026-04-01": 865463.1,
+        "2026-05-01": 939138.3
+      },
+      "forecast": {
+        "2026-06-01": 1014108.1,
+        "2026-07-01": 1078224.4,
+        "2026-08-01": 1142340.7
+      },
+      "trend_per_month": 64116.3
+    },
+    "fmcg": {
+      "params": {
+        "alpha": 0.1,
+        "beta": 0.25,
+        "holdout_mae": 6753.8
+      },
+      "history": {
+        "2024-01-01": 1989.7,
+        "2024-02-01": 1729.4,
+        "2024-03-01": 5405.9,
+        "2024-04-01": 8061.7,
+        "2024-05-01": 9196.1,
+        "2024-06-01": 13889.2,
+        "2024-07-01": 17832.3,
+        "2024-08-01": 20857.3,
+        "2024-09-01": 27033.7,
+        "2024-10-01": 26838.2,
+        "2024-11-01": 33814.8,
+        "2024-12-01": 31672.9,
+        "2025-01-01": 33384.8,
+        "2025-02-01": 39073.1,
+        "2025-03-01": 45341.1,
+        "2025-04-01": 47616.2,
+        "2025-05-01": 50252.4,
+        "2025-06-01": 57334.7,
+        "2025-07-01": 68996.8,
+        "2025-08-01": 64166.8,
+        "2025-09-01": 76022.0,
+        "2025-10-01": 71791.6,
+        "2025-11-01": 89824.5,
+        "2025-12-01": 76425.8,
+        "2026-01-01": 79541.1,
+        "2026-02-01": 83346.9,
+        "2026-03-01": 94969.0,
+        "2026-04-01": 113107.1,
+        "2026-05-01": 113016.0
+      },
+      "fitted": {
+        "2024-01-01": 1989.7,
+        "2024-02-01": 1729.4,
+        "2024-03-01": 1469.1,
+        "2024-04-01": 1700.9,
+        "2024-05-01": 2334.1,
+        "2024-06-01": 3189.0,
+        "2024-07-01": 4695.2,
+        "2024-08-01": 6773.6,
+        "2024-09-01": 9298.7,
+        "2024-10-01": 12632.3,
+        "2024-11-01": 15968.1,
+        "2024-12-01": 20114.2,
+        "2025-01-01": 23920.4,
+        "2025-02-01": 27753.9,
+        "2025-03-01": 32055.7,
+        "2025-04-01": 36886.4,
+        "2025-05-01": 41729.7,
+        "2025-06-01": 46565.4,
+        "2025-07-01": 51895.0,
+        "2025-08-01": 58285.3,
+        "2025-09-01": 63700.7,
+        "2025-10-01": 70068.1,
+        "2025-11-01": 75418.8,
+        "2025-12-01": 82397.8,
+        "2026-01-01": 87189.8,
+        "2026-02-01": 91622.9,
+        "2026-03-01": 95786.4,
+        "2026-04-01": 100675.3,
+        "2026-05-01": 107199.9
+      },
+      "forecast": {
+        "2026-06-01": 113208.3,
+        "2026-07-01": 118635.2,
+        "2026-08-01": 124062.0
+      },
+      "trend_per_month": 5426.8
+    }
+  }
+};
+
+document.getElementById('lastUpdated').textContent = 'as of ' + DATA.generated_at;
+
+// ---------- KPIs ----------
+const kpis = DATA.kpis;
+const kpiItems = [
+  {label:'Total sellers', value: kpis.total_sellers.toLocaleString(), sub:'onboarded to date', cls:''},
+  {label:'Active last month', value: kpis.active_sellers_latest_month.toLocaleString(), sub: kpis.latest_month, cls:'teal'},
+  {label:'GMV (TTM)', value: '€' + Math.round(kpis.gmv_ttm/1000).toLocaleString()+'K', sub:'trailing 12 months', cls:''},
+  {label:'Avg return rate', value: kpis.avg_return_rate_pct + '%', sub:'across all orders', cls:''},
+  {label:'FMCG share of GMV', value: kpis.fmcg_gmv_share_pct + '%', sub:'fastest-retaining vertical', cls:'teal'},
+];
+document.getElementById('kpiStrip').innerHTML = kpiItems.map(k=>`
+  <div class="kpi">
+    <div class="label">${k.label}</div>
+    <div class="value ${k.cls}">${k.value}</div>
+    <div class="sub">${k.sub}</div>
+  </div>`).join('');
+
+// ---------- Cohort heatmap ----------
+function retentionColor(v){
+  if(v===null||v===undefined) return null;
+  // interpolate red -> amber -> green -> teal across 0.5..1.0
+  const stops = [
+    [0.50, [122,31,43]],
+    [0.70, [194,74,62]],
+    [0.80, [232,163,61]],
+    [0.90, [143,203,107]],
+    [1.00, [41,217,194]],
+  ];
+  let clamped = Math.max(0.5, Math.min(1, v));
+  for(let i=0;i<stops.length-1;i++){
+    const [p0,c0]=stops[i], [p1,c1]=stops[i+1];
+    if(clamped>=p0 && clamped<=p1){
+      const t=(clamped-p0)/(p1-p0);
+      const c = c0.map((c0v,idx)=>Math.round(c0v+t*(c1[idx]-c0v)));
+      return `rgb(${c[0]},${c[1]},${c[2]})`;
+    }
+  }
+  return 'rgb(41,217,194)';
+}
+
+const cohort = DATA.cohort;
+let thead = '<tr><th></th>' + cohort.tenure_cols.map(c=>`<th>M${c}</th>`).join('') + '</tr>';
+let rows = cohort.months.map((m,ri)=>{
+  const cells = cohort.matrix[ri].map(v=>{
+    if(v===null) return '<td class="cell empty"></td>';
+    const bg = retentionColor(v);
+    return `<td class="cell" style="background:${bg}" title="${Math.round(v*100)}%">${Math.round(v*100)}</td>`;
+  }).join('');
+  const label = m.slice(0,7);
+  return `<tr><td class="rowlabel">${label}</td>${cells}</tr>`;
+}).join('');
+document.getElementById('heatmapTable').innerHTML = thead + rows;
+
+// category retention chart
+const catRet = cohort.category_retention_m3.slice().sort((a,b)=>b.retention_rate-a.retention_rate);
+new Chart(document.getElementById('categoryRetentionChart'), {
+  type:'bar',
+  data:{
+    labels: catRet.map(d=>d.category),
+    datasets:[{
+      data: catRet.map(d=>Math.round(d.retention_rate*1000)/10),
+      backgroundColor: catRet.map(d=>d.category==='FMCG' ? '#29D9C2' : 'rgba(255,255,255,0.16)'),
+      borderRadius:4,
+      barThickness:16,
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.raw+'% retained'}}},
+    scales:{
+      x:{min:80,max:100, grid:{color:'#262B38'}, ticks:{color:'#8891A4',font:{family:'JetBrains Mono',size:10}}},
+      y:{grid:{display:false}, ticks:{color:'#EDEFF3',font:{family:'Inter',size:11}}}
+    }
+  }
+});
+
+// ---------- A/B test ----------
+const ab = DATA.ab_test;
+document.getElementById('abN').textContent = ab.sample_size.control + ab.sample_size.treatment;
+
+const act = ab.activation_test;
+document.getElementById('activationLift').textContent = (act.abs_lift_pp>=0?'+':'') + act.abs_lift_pp + 'pp';
+document.getElementById('activationMeans').textContent = `${(act.control_rate*100).toFixed(1)}% → ${(act.treatment_rate*100).toFixed(1)}%`;
+const actPill = document.getElementById('activationSigPill');
+actPill.textContent = act.significant_at_5pct ? 'Significant (p='+act.p_value+')' : 'Not significant';
+actPill.className = 'pill ' + (act.significant_at_5pct ? 'sig' : 'nonsig');
+
+const gmv = ab.gmv_90d_test;
+document.getElementById('gmvLift').textContent = (gmv.rel_lift_pct>=0?'+':'') + gmv.rel_lift_pct + '%';
+document.getElementById('gmvMeans').textContent = `€${gmv.control_mean.toLocaleString()} → €${gmv.treatment_mean.toLocaleString()}`;
+const gmvPill = document.getElementById('gmvSigPill');
+gmvPill.textContent = gmv.significant_at_5pct ? 'Significant (p='+gmv.p_value+')' : 'Not significant — underpowered';
+gmvPill.className = 'pill ' + (gmv.significant_at_5pct ? 'sig' : 'nonsig');
+
+document.getElementById('pvalActivation').textContent = act.p_value;
+document.getElementById('pvalGmv').textContent = gmv.p_value;
+document.getElementById('powerGmv').textContent = gmv.power_observed;
+document.getElementById('mdeGmv').textContent = '€' + gmv.mde_at_80pct_power.toLocaleString();
+
+document.getElementById('segmentTable').innerHTML =
+  '<tr><th>Category</th><th>n (c/t)</th><th>Control avg</th><th>Treatment avg</th><th>Rel. lift</th><th>p-value</th></tr>' +
+  ab.segment_breakdown.map(s=>`
+    <tr>
+      <td>${s.category}</td>
+      <td>${s.n_control}/${s.n_treatment}</td>
+      <td>€${s.control_mean.toLocaleString()}</td>
+      <td>€${s.treatment_mean.toLocaleString()}</td>
+      <td class="${s.rel_lift_pct>=0?'up':'down'}">${s.rel_lift_pct>=0?'+':''}${s.rel_lift_pct}%</td>
+      <td>${s.p_value}</td>
+    </tr>`).join('');
+
+// ---------- Health model ----------
+const health = DATA.health_model;
+document.getElementById('churnRate').textContent = (health.churn_rate_observed*100).toFixed(1) + '%';
+
+const gb = health.model_results.gradient_boosting;
+const lr = health.model_results.logistic_regression;
+document.getElementById('modelMetrics').innerHTML = `
+  <div class="metric-row"><span class="k">ROC-AUC (Gradient Boosting)</span><span class="v">${gb.roc_auc}</span></div>
+  <div class="metric-row"><span class="k">ROC-AUC (Logistic Regression baseline)</span><span class="v">${lr.roc_auc}</span></div>
+  <div class="metric-row"><span class="k">Precision / Recall (GB)</span><span class="v">${gb.precision} / ${gb.recall}</span></div>
+  <div class="metric-row"><span class="k">Test set size / churn rate</span><span class="v">${gb.n_test} / ${(gb.test_churn_rate*100).toFixed(1)}%</span></div>
+`;
+
+const feats = health.feature_importance.slice(0,7);
+new Chart(document.getElementById('featureImportanceChart'), {
+  type:'bar',
+  data:{
+    labels: feats.map(f=>f.feature),
+    datasets:[{
+      data: feats.map(f=>Math.round(f.importance*1000)/1000),
+      backgroundColor:'#FF4D8D',
+      borderRadius:4,
+      barThickness:14,
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:'#262B38'}, ticks:{color:'#8891A4',font:{family:'JetBrains Mono',size:10}}},
+      y:{grid:{display:false}, ticks:{color:'#EDEFF3',font:{family:'Inter',size:11}}}
+    }
+  }
+});
+
+document.getElementById('leaderboardTable').innerHTML =
+  '<tr><th>Seller</th><th>Category</th><th>Tier</th><th>Risk</th></tr>' +
+  health.at_risk_leaderboard.slice(0,10).map(s=>`
+    <tr>
+      <td>${s.seller_id}</td>
+      <td>${s.category}</td>
+      <td>${s.tier}</td>
+      <td style="min-width:90px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="risk-bar-bg" style="width:50px;"><div class="risk-bar-fill" style="width:${s.churn_risk_score*100}%"></div></div>
+          <span>${Math.round(s.churn_risk_score*100)}%</span>
+        </div>
+      </td>
+    </tr>`).join('');
+
+// ---------- Forecast ----------
+const forecast = DATA.forecast;
+let forecastChart;
+function renderForecast(key){
+  const f = forecast[key];
+  const histLabels = Object.keys(f.history);
+  const foreLabels = Object.keys(f.forecast);
+  const allLabels = histLabels.concat(foreLabels);
+  const histData = Object.values(f.history);
+  const foreData = Object.values(f.forecast);
+  const bridge = new Array(histLabels.length-1).fill(null).concat([histData[histData.length-1]], foreData);
+  const historySeries = histData.concat(new Array(foreLabels.length).fill(null));
+
+  if(forecastChart) forecastChart.destroy();
+  forecastChart = new Chart(document.getElementById('forecastChart'), {
+    type:'line',
+    data:{
+      labels: allLabels.map(d=>d.slice(0,7)),
+      datasets:[
+        {label:'Actual', data: historySeries, borderColor:'#29D9C2', backgroundColor:'rgba(41,217,194,0.08)', fill:true, tension:0.3, pointRadius:0, borderWidth:2},
+        {label:'Forecast', data: bridge, borderColor:'#FFB020', borderDash:[5,4], tension:0.3, pointRadius:2, borderWidth:2, backgroundColor:'transparent'},
+      ]
+    },
+    options:{
+      plugins:{legend:{labels:{color:'#8891A4',font:{family:'Inter',size:11}}}},
+      scales:{
+        x:{grid:{color:'#1c2029'}, ticks:{color:'#8891A4',font:{family:'JetBrains Mono',size:10},maxRotation:0,autoSkip:true,maxTicksLimit:10}},
+        y:{grid:{color:'#1c2029'}, ticks:{color:'#8891A4',font:{family:'JetBrains Mono',size:10}, callback:v=>'€'+(v/1000)+'K'}}
+      }
+    }
+  });
+  document.getElementById('forecastParams').textContent =
+    `α=${f.params.alpha}, β=${f.params.beta} · MAE €${f.params.holdout_mae.toLocaleString()}`;
+}
+renderForecast('total');
+
+document.querySelectorAll('.toggle-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderForecast(btn.dataset.series);
+  });
+});
+</script>
+</body>
+</html>
