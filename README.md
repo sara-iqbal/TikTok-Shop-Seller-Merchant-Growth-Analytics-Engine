@@ -22,12 +22,12 @@ Three of them (DS Graduate, Business Analytics Intern, FMCG Data Analyst
 Intern) point at the same underlying skill set even though the job titles
 differ:
 
-| Job posting | What it asks for | Where this project covers it |
+| Sr.no | What it asks for | Where this project covers it |
 |---|---|---|
-| Data Scientist Graduate (TikTok Shop EMEA DS) | A/B testing, statistical modeling, metrics development, big-data mining | `src/ab_test.py` — Welch's t-test, chi-square, power analysis, MDE |
-| Business Analytics Project Intern (TikTok Shop) | Merchant lifecycle, cohort analysis, GMV expansion, governance health | `src/cohort_analysis.py` — retention cohorts, category-level checkpoints |
-| Data Analyst Project Intern (TikTok Shop – FMCG) | Category performance tracking, ad-hoc analysis, operational efficiency | FMCG is modeled as its own category throughout; dashboard breaks it out explicitly |
-| (Bonus reference) TikTok LIVE Data Analyst Intern | Segmentation, predictive "high-potential" scoring, OKR dashboards | `src/health_model.py` uses the same segmentation/scoring pattern, applied to sellers instead of creators |
+| 1 | A/B testing, statistical modeling, metrics development, big-data mining | `src/ab_test.py` — Welch's t-test, chi-square, power analysis, MDE |
+| 2 | Merchant lifecycle, cohort analysis, GMV expansion, governance health | `src/cohort_analysis.py` — retention cohorts, category-level checkpoints |
+| 3 | Category performance tracking, ad-hoc analysis, operational efficiency | FMCG is modeled as its own category throughout; dashboard breaks it out explicitly |
+| 4 | Segmentation, predictive "high-potential" scoring, OKR dashboards | `src/health_model.py` uses the same segmentation/scoring pattern, applied to sellers instead of creators |
 
 Rather than building four disconnected toy demos, I built one coherent
 dataset and pipeline that a merchant-ops or DS team could plausibly run,
