@@ -5,7 +5,7 @@ Business Analytics team supports for TikTok Shop's EMEA seller ecosystem:
 retention diagnostics, an onboarding-flow A/B test, a churn-risk model, and a
 short-term GMV forecast — all surfaced in a live, static dashboard.
 
-**[Live dashboard →https://sara-iqbal.github.io/TikTok-Shop-Seller-Merchant-Growth-Analytics-Engine/]([(https://sara-iqbal.github.io/TikTok-Shop-Seller-Merchant-Growth-Analytics-Engine/)])** (open directly in a browser, no server needed)
+[Live dashboard →https://sara-iqbal.github.io/TikTok-Shop-Seller-Merchant-Growth-Analytics-Engine/] (open directly in a browser, no server needed)
 
 Built as a portfolio project for TikTok Shop Data Science / Business
 Analytics / FMCG intern & graduate roles (London, 2026). It's designed to
