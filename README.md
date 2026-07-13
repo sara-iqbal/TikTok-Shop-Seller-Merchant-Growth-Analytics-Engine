@@ -63,7 +63,7 @@ python main.py
 
 ## The data
 
-There is no TikTok-internal data here — TikTok Shop doesn't publish
+There is no TikTok-internal data here TikTok Shop doesn't publish
 seller-level data, so `generate_data.py` builds a **synthetic** marketplace:
 1,400 sellers across 7 categories (weighted toward FMCG and Beauty, which
 the job postings themselves flag as focus areas), 5 EU/UK markets, and 3
@@ -86,22 +86,22 @@ randomized into a legacy vs. streamlined onboarding flow. I used:
 - A chi-square test on 14-day activation rate
 - A post-hoc power calculation and a minimum-detectable-effect (MDE)
   calculation, so a non-significant result is reported honestly rather than
-  hidden — the actual result here (below) needed this caveat.
+  hidden the actual result here (below) needed this caveat.
 
-No `statsmodels`/`prophet` — everything is implemented directly on `scipy.stats`
+No `statsmodels`/`prophet` everything is implemented directly on `scipy.stats`
 and plain `numpy` so every formula is auditable line by line.
 
 **Churn-risk model.** A Gradient Boosting classifier (with a Logistic
 Regression baseline) predicts whether an active seller goes dark within 2
 months, using only their first 3 months of behavior: GMV level and trend,
 order volume, return rate, ad spend, and seller tier/category. Churn is a
-rare event (~6.8% base rate) — I used class-balanced sample weights rather
+rare event (~6.8% base rate) I used class-balanced sample weights rather
 than oversampling, and evaluated with ROC-AUC / precision / recall rather
 than accuracy, since accuracy is meaningless on an imbalanced label.
 
 **GMV forecast.** A 3-month-ahead forecast using Holt's linear (double)
 exponential smoothing, implemented by hand in `numpy`. Smoothing parameters
-(α, β) are chosen by grid search against a 4-month holdout — a lightweight
+(α, β) are chosen by grid search against a 4-month holdout a lightweight
 form of walk-forward validation instead of trusting default parameters.
 
 ## Results (this run)
@@ -111,18 +111,18 @@ form of walk-forward validation instead of trusting default parameters.
 - **GMV lift is directionally positive but not yet significant:** +13.2%
   (p = 0.21). The observed power at this sample size is only ~0.24, and the
   minimum detectable effect at 80% power would need a larger lift than what
-  was observed — the honest read is "this experiment needs a larger sample
+  was observed the honest read is "this experiment needs a larger sample
   or a longer runtime before making a GMV-based launch decision," even
   though activation alone is a good enough reason to ship.
 - **Churn model:** ROC-AUC 0.61 (Gradient Boosting) vs. 0.51 (Logistic
   Regression baseline). Top predictive features are return rate, ad spend,
-  and order volume trend — not raw GMV level. An AUC in the 0.6 range on a
+  and order volume trend not raw GMV level. An AUC in the 0.6 range on a
   genuinely noisy, low-base-rate label is realistic; I'd rather report that
   honestly than tune a synthetic dataset until it produces an unrealistic
   0.9+ AUC that wouldn't reflect what a first pass at this problem actually
   looks like in production.
 - **FMCG retains best:** ~97.6% of FMCG sellers are still active at the
-  month-3 checkpoint, the highest of any category — consistent with lower
+  month-3 checkpoint, the highest of any category consistent with lower
   return rates and more repeatable purchase behavior, and a direct,
   actionable data point for prioritizing FMCG brand incubation.
 - **Forecast:** total marketplace GMV projected to grow from ~€1.01M to
@@ -145,7 +145,7 @@ form of walk-forward validation instead of trusting default parameters.
 
 ## What I learned building this
 
-Building the whole pipeline — not just a model in a notebook — forced a lot
+Building the whole pipeline not just a model in a notebook forced a lot
 of decisions a single "fit a classifier" exercise skips: how to define a
 churn label without leaking the future into the features, why accuracy is
 the wrong metric under class imbalance, and why an A/B test with a
